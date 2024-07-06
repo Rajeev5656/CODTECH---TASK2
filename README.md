@@ -1,8 +1,8 @@
-NAME: RAJEEV.C
-Company: CODTECH IT SOLUTIONS
-ID: CT4CP2713
-DOMAIN: C PROGRAMMING
-MENTOR: Muzammil
+NAME: RAJEEV.C  
+Company: CODTECH IT SOLUTIONS  
+ID: CT4CP2713   
+DOMAIN: C PROGRAMMING  
+MENTOR: Muzammil  
 
 Overview of the project
 The objective of this code is to create a student management system that can handle student registrations, maintain student records, and calculate grades. The system should allow adding, editing, and deleting student information.
