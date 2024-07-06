@@ -1,0 +1,111 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Student {
+    char name[50];
+    int roll;
+    float marks[5];
+};
+
+struct Student students[100];
+int numStudents = 0;
+
+void addStudent() {
+    printf("Enter name: ");
+    scanf("%s", students[numStudents].name);
+    printf("Enter roll: ");
+    scanf("%d", &students[numStudents].roll);
+    for (int i = 0; i < 5; i++) {
+        printf("Enter mark %d: ", i+1);
+        scanf("%f", &students[numStudents].marks[i]);
+    }
+    numStudents++;
+}
+
+void editStudent() {
+    int roll;
+    printf("Enter roll to edit: ");
+    scanf("%d", &roll);
+    for (int i = 0; i < numStudents; i++) {
+        if (students[i].roll == roll) {
+            printf("Enter new name: ");
+            scanf("%s", students[i].name);
+            printf("Enter new roll: ");
+            scanf("%d", &students[i].roll);
+            for (int j = 0; j < 5; j++) {
+                printf("Enter new mark %d: ", j+1);
+                scanf("%f", &students[i].marks[j]);
+            }
+            break;
+        }
+    }
+}
+
+void deleteStudent() {
+    int roll;
+    printf("Enter roll to delete: ");
+    scanf("%d", &roll);
+    for (int i = 0; i < numStudents; i++) {
+        if (students[i].roll == roll) {
+            for (int j = i; j < numStudents-1; j++) {
+                students[j] = students[j+1];
+            }
+            numStudents--;
+            break;
+        }
+    }
+}
+
+void calculateGrades() {
+    for (int i = 0; i < numStudents; i++) {
+        float total = 0;
+        for (int j = 0; j < 5; j++) {
+            total += students[i].marks[j];
+        }
+        float average = total / 5;
+        printf("Student %s (Roll %d) - Average Mark: %.2f\n", students[i].name, students[i].roll, average);
+    }
+}
+
+void displayStudents() {
+    for (int i = 0; i < numStudents; i++) {
+        printf("Student %s (Roll %d) - Marks: ", students[i].name, students[i].roll);
+        for (int j = 0; j < 5; j++) {
+            printf("%.2f ", students[i].marks[j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int choice;
+    while (1) {
+        printf("1. Add Student\n");
+        printf("2. Edit Student\n");
+        printf("3. Delete Student\n");
+        printf("4. Calculate Grades\n");
+        printf("5. Display Students\n");
+        printf("6. Exit\n");
+        scanf("%d", &choice);
+        switch (choice) {
+            case 1:
+                addStudent();
+                break;
+            case 2:
+                editStudent();
+                break;
+            case 3:
+                deleteStudent();
+                break;
+            case 4:
+                calculateGrades();
+                break;
+            case 5:
+                displayStudents();
+                break;
+            case 6:
+                return 0;
+        }
+    }
+    return 0;
+}
